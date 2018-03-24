@@ -7,9 +7,10 @@
     tools:context="cn.edu.gdmec.android.boxuegu.activity.MainActivity">
 
     <TextView
+        android:id="@+id/back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
+        android:text="把参数带回给登录页"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"

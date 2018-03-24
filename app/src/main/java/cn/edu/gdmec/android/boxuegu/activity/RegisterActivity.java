@@ -34,15 +34,15 @@ public class RegisterActivity extends AppCompatActivity {
         init();
     }
     public  void init(){
-        tv_main_title=findViewById(R.id.tv_main_title);
+        tv_main_title=(TextView)findViewById(R.id.tv_main_title);
         tv_main_title.setText("注册");
-        tv_back.findViewById(R.id.tv_back);
-        rl_title_bar.findViewById(R.id.title_bar);
+        tv_back=(TextView)findViewById(R.id.tv_back);
+        rl_title_bar=(RelativeLayout)findViewById(R.id.title_bar);
         rl_title_bar.setBackgroundColor(Color.TRANSPARENT);
-        btn_register.findViewById(R.id.btn_register);
-        et_user_name.findViewById(R.id.et_user_name);
-        et_psw.findViewById(R.id.et_psw);
-        et_psw_agin.findViewById(R.id.et_psw_again);
+        btn_register=(Button)findViewById(R.id.btn_register);
+        et_user_name=(EditText)findViewById(R.id.et_user_name);
+        et_psw=(EditText)findViewById(R.id.et_psw);
+        et_psw_agin=(EditText)findViewById(R.id.et_psw_again);
         tv_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

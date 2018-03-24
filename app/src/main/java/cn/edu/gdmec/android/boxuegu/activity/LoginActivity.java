@@ -2,6 +2,7 @@ package cn.edu.gdmec.android.boxuegu.activity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -24,18 +25,19 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         init();
 
     }
     public void  init(){
-        tv_main_title=findViewById(R.id.tv_main_title);
+        tv_main_title=(TextView)findViewById(R.id.tv_main_title);
         tv_main_title.setText("登录");
-        tv_back.findViewById(R.id.tv_back);
-        tv_register.findViewById(R.id.tv_register);
-        tv_find_psw.findViewById(R.id.tv_find_psw);
-        btn_login.findViewById(R.id.btn_login);
-        et_user_name.findViewById(R.id.et_user_name);
-        et_psw.findViewById(R.id.et_psw);
+        tv_back=(TextView)findViewById(R.id.tv_back);
+        tv_register=(TextView)findViewById(R.id.tv_register);
+        tv_find_psw=(TextView)findViewById(R.id.tv_find_psw);
+        btn_login=(Button)findViewById(R.id.btn_login);
+        et_user_name=(EditText)findViewById(R.id.et_user_name);
+        et_psw=(EditText)findViewById(R.id.et_psw);
         tv_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -71,12 +73,15 @@ public class LoginActivity extends AppCompatActivity {
                 }else if(md5Psw.equals(spPsw)){
                     Toast.makeText(LoginActivity.this,"登录成功",Toast.LENGTH_SHORT).show();
                     saveLoginStatus(true,userName);
-                    Intent data=new Intent();
+                    Intent data=new Intent(LoginActivity.this,MainActivity.class);
                     data.putExtra("isLogin",true);
                     data.putExtra("userName",userName);
-                    setResult(RESULT_OK,data);
-                    LoginActivity.this.finish();
-                    return;
+//                    startActivityForResult(data,1);
+                    startActivity(data);
+                   LoginActivity.this.finish();
+//                Intent intent=new Intent(LoginActivity.this,MainActivity.class);
+//                   startActivity(intent);
+//                    return ;
                 }else if((spPsw!=null&&!TextUtils.isEmpty(spPsw)&&!md5Psw.equals(spPsw))){
                    Toast.makeText(LoginActivity.this, "输入的用户名和密码不一致", Toast.LENGTH_SHORT).show();
                    return;
@@ -91,7 +96,7 @@ public class LoginActivity extends AppCompatActivity {
         return sp.getString(userName,"");
     }
     private void saveLoginStatus(boolean status,String userName){
-        SharedPreferences sp=getSharedPreferences("logjnInfo",MODE_PRIVATE);
+        SharedPreferences sp=getSharedPreferences("loginInfo",MODE_PRIVATE);
         SharedPreferences.Editor editor=sp.edit();
         editor.putBoolean("isLogin",status);
         editor.putString("loginUserName",userName);
@@ -101,12 +106,15 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(data!=null){
-            String userName=data.getStringExtra("userName");
-            if(!TextUtils.isEmpty(userName)){
-                et_user_name.setText(userName);
-                et_user_name.setSelection(userName.length());
+        if (requestCode==1&&resultCode==RESULT_OK){
+            if(data!=null){
+                String userName=data.getStringExtra("name");
+                Toast.makeText(LoginActivity.this,userName,Toast.LENGTH_LONG);               /* if(!TextUtils.isEmpty(userName)){
+                    et_user_name.setText(userName);
+                    et_user_name.setSelection(userName.length());
+                }*/
             }
         }
+
     }
 }
