@@ -74,11 +74,14 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.makeText(LoginActivity.this,"登录成功",Toast.LENGTH_SHORT).show();
                     saveLoginStatus(true,userName);
                     Intent data=new Intent(LoginActivity.this,MainActivity.class);
+                    //Intent data=new Intent();
                     data.putExtra("isLogin",true);
                     data.putExtra("userName",userName);
 //                    startActivityForResult(data,1);
-                    startActivity(data);
+                   startActivity(data);
+                    //setResult(RESULT_OK,data);
                    LoginActivity.this.finish();
+                   //return;
 //                Intent intent=new Intent(LoginActivity.this,MainActivity.class);
 //                   startActivity(intent);
 //                    return ;
