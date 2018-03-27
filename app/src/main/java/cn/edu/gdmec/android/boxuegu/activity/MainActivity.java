@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
      String userName = getIntent().getStringExtra("userName");
-       /// back=findViewById(R.id.back);
+      back=findViewById(R.id.back);
         back.setText(userName+"登录成功");
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,8 +66,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
     if (data!=null){
-          /*  String name = data.getStringExtra("userName");
-            Toast.makeText(MainActivity.this,name+"登录成功",Toast.LENGTH_SHORT).show();*/
+           String name = data.getStringExtra("userName");
+            Toast.makeText(MainActivity.this,name+"登录成功",Toast.LENGTH_SHORT).show();
           boolean isLogin=data.getBooleanExtra("isLogin",false);
           if(isLogin){
               clearBottomImageState();
