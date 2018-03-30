@@ -57,7 +57,8 @@ public class LoginActivity extends AppCompatActivity {
         tv_find_psw.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+             Intent intent=new Intent(LoginActivity.this,FindPswActivity.class);
+             startActivity(intent);
             }
         });
         btn_login.setOnClickListener(new View.OnClickListener() {
@@ -76,7 +77,7 @@ public class LoginActivity extends AppCompatActivity {
                 } else if (md5Psw.equals(spPsw)) {
                     Toast.makeText(LoginActivity.this, "登录成功", Toast.LENGTH_SHORT).show();
                     saveLoginStatus(true, userName);
-                    Intent data = new Intent(LoginActivity.this, Main2Activity.class);
+                    Intent data = new Intent(LoginActivity.this, MainActivity.class);
                     //Intent data=new Intent();
                     data.putExtra("isLogin", true);
                     data.putExtra("userName", userName);
