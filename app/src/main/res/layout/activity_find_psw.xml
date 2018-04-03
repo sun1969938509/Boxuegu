@@ -11,7 +11,7 @@
      android:layout_marginTop="35dp"
      android:layout_marginLeft="35dp"
      android:layout_marginRight="35dp"
-     android:text="您的用户名是？"
+     android:text="您的用户名是？ "
      android:textColor="@android:color/white"
      android:textSize="18sp"
      android:visibility="gone"
