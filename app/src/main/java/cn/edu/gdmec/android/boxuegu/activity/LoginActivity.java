@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import cn.edu.gdmec.android.boxuegu.ActivityFindPswActivity;
 import cn.edu.gdmec.android.boxuegu.Main2Activity;
 import cn.edu.gdmec.android.boxuegu.R;
 import cn.edu.gdmec.android.boxuegu.utils.MD5Utils;
@@ -57,7 +58,7 @@ public class LoginActivity extends AppCompatActivity {
         tv_find_psw.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-             Intent intent=new Intent(LoginActivity.this,FindPswActivity.class);
+             Intent intent=new Intent(LoginActivity.this, ActivityFindPswActivity.class);
              startActivity(intent);
             }
         });
