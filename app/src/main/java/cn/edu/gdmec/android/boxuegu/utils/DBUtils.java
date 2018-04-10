@@ -32,12 +32,13 @@ public class DBUtils {
         cv.put("nickName",bean.nickName);
         cv.put("sex",bean.sex);
         cv.put("signature",bean.signature);
+        cv.put("QQ",bean.QQ);
         db.insert(SQLiteHelper.U_USERINFO,null,cv);
 
     }
     public UserBean getUserInfo(String userName){
-        String sql="SELECT * FORM "+SQLiteHelper.U_USERINFO+"" +
-                "WHERE userName=?";
+        String sql="SELECT * FROM "+SQLiteHelper.U_USERINFO+
+                " WHERE userName=?";
         Cursor cursor=db.rawQuery(sql,new String[]{userName});
         UserBean bean=null;
         while (cursor.moveToNext()){
@@ -46,6 +47,7 @@ public class DBUtils {
             bean.nickName=cursor.getString(cursor.getColumnIndex("nickName"));
             bean.sex=cursor.getString(cursor.getColumnIndex("sex"));
             bean.signature=cursor.getString(cursor.getColumnIndex("signature"));
+            bean.QQ=cursor.getString(cursor.getColumnIndex("QQ"));
         }
         cursor.close();
         return bean;

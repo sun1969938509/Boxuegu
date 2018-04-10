@@ -54,7 +54,7 @@ public class MyInfoView {
                     Intent intent=new Intent(mContext, UserInfoActivity.class);
                     mContext.startActivity(intent);
                 }else{
-                    //未登录跳转到登录界面
+                    //未登录跳转到登录界面a   a   a
                     Intent intent=new Intent(mContext, LoginActivity.class);
                     mContext.startActivityForResult(intent,1);
                 }

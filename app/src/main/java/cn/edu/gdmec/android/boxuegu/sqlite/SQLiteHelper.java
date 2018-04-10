@@ -9,7 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
  */
 
 public class SQLiteHelper extends SQLiteOpenHelper{
-    private static final  int DB_VERSION=1;
+    private static final  int DB_VERSION=2;
     public static String DB_NAME="bxg.db";
     public static final String U_USERINFO="userinfo";//个人资料
     public SQLiteHelper(Context context){
@@ -17,17 +17,18 @@ public class SQLiteHelper extends SQLiteOpenHelper{
     }
     @Override
     public void onCreate(SQLiteDatabase db){
-        db.execSQL("CREATE TABLE IF NOT EXISTS"+U_USERINFO+"("
-                +"_id INTEGER PRIMARY KEY ANTOINCREMENT,"
-                +"userName VARCHAR，"
+        db.execSQL("CREATE TABLE IF NOT EXISTS "+U_USERINFO+"("
+                +"_id INTEGER PRIMARY KEY AUTOINCREMENT,"
+                +"userName VARCHAR,"
                 +"nickName VARCHAR,"
                 +"sex VARCHAR,"
-                +"signature VARCHAR"
+                +"signature VARCHAR,"
+                +"QQ VARCHAR"
                 +")");
     }
     @Override
     public void onUpgrade(SQLiteDatabase db,int oldVersion,int newVersion){
-        db.execSQL("DROP TABLE IF EXISTS"+U_USERINFO);
+        db.execSQL("DROP TABLE IF EXISTS "+U_USERINFO);
         onCreate(db);
     }
 }

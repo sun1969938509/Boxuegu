@@ -8,8 +8,10 @@ import android.os.Build;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.InputType;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.ViewStructure;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,11 +24,12 @@ import cn.edu.gdmec.android.boxuegu.utils.DBUtils;
 public class UserInfoActivity extends AppCompatActivity implements View.OnClickListener{
     private TextView tv_back;
     private TextView tv_main_title;
-    private TextView tv_nickName,tv_signature,tv_user_name,tv_sex;
-    private RelativeLayout rl_nickName,rl_sex,rl_signature,rl_title_bar;
+    private TextView tv_nickName,tv_signature,tv_user_name,tv_sex,tv_QQ;
+    private RelativeLayout rl_nickName,rl_sex,rl_signature,rl_title_bar,rl_QQ;
     private String spUserName;
     private static final int CHANGE_NICKNAME=1;
     private static final int CHANGE_SIGNATURE=2;
+    private static final int CHANGE_QQ=3;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,10 +49,12 @@ public class UserInfoActivity extends AppCompatActivity implements View.OnClickL
         rl_nickName=(RelativeLayout)findViewById(R.id.rl_nickName);
         rl_sex=(RelativeLayout)findViewById(R.id.rl_sex);
         rl_signature=(RelativeLayout)findViewById(R.id.rl_signature);
+        rl_QQ=(RelativeLayout)findViewById(R.id.rl_QQ);
         tv_nickName=(TextView)findViewById(R.id.tv_nickName);
         tv_user_name=(TextView)findViewById(R.id.tv_user_name);
         tv_sex=(TextView)findViewById(R.id.tv_sex);
         tv_signature=(TextView)findViewById(R.id.tv_signature);
+        tv_QQ=(TextView)findViewById(R.id.tv_QQ);
 
    }
 
@@ -61,6 +66,7 @@ public class UserInfoActivity extends AppCompatActivity implements View.OnClickL
            bean.nickName="问答精灵";
            bean.sex="男";
            bean.signature="问答精灵";
+           bean.QQ="未添加";
            DBUtils.getInstance(this).saveUserInfo(bean);
        }
        setValue(bean);
@@ -70,12 +76,14 @@ public class UserInfoActivity extends AppCompatActivity implements View.OnClickL
        tv_user_name.setText(bean.userName);
        tv_sex.setText(bean.sex);
        tv_signature.setText(bean.signature);
+       tv_QQ.setText(bean.QQ);
     }
     private void setListener(){
         tv_back.setOnClickListener(this);
         rl_nickName.setOnClickListener(this);
         rl_sex.setOnClickListener(this);
         rl_signature.setOnClickListener(this);
+        rl_QQ.setOnClickListener(this);
     }
     @Override
     public void onClick(View v) {
@@ -102,6 +110,14 @@ public class UserInfoActivity extends AppCompatActivity implements View.OnClickL
               bdSignature.putString("title","签名");
               bdSignature.putInt("flag",2);
               enterActivityForResult(ChangeUserInfoActivity.class,CHANGE_SIGNATURE,bdSignature);
+              break;
+          case R.id.rl_QQ:
+              String QQ1=tv_QQ.getText().toString();
+              Bundle QQ=new Bundle();
+              QQ.putString("content",QQ1);
+              QQ.putString("title","QQ号");
+              QQ.putInt("flag",3);
+              enterActivityForResult(ChangeUserInfoActivity.class,CHANGE_QQ,QQ);
               break;
               default:
                   break;
@@ -162,6 +178,17 @@ public class UserInfoActivity extends AppCompatActivity implements View.OnClickL
                     tv_signature.setText(new_info);
                     //更新数据库中的签名字段
                     DBUtils.getInstance(UserInfoActivity.this).updateUserInfo("signature",new_info,spUserName);
+                }
+                break;
+            case CHANGE_QQ:
+                if(data!=null){
+                    new_info=data.getStringExtra("QQ");
+                    if(TextUtils.isEmpty(new_info)){
+                        return;
+                    }
+                    tv_QQ.setText(new_info);
+                    //更新数据库中的签名字段
+                    DBUtils.getInstance(UserInfoActivity.this).updateUserInfo("QQ",new_info,spUserName);
                 }
                 break;
         }
