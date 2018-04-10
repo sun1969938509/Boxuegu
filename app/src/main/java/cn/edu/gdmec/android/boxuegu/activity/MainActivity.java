@@ -18,6 +18,7 @@ import cn.edu.gdmec.android.boxuegu.ExercisesFragment;
 import cn.edu.gdmec.android.boxuegu.FragmentMyinfoFragment;
 import cn.edu.gdmec.android.boxuegu.R;
 import cn.edu.gdmec.android.boxuegu.utils.AnalysisUtils;
+import cn.edu.gdmec.android.boxuegu.view.ExercisesView;
 
 public class MainActivity extends FragmentActivity implements View.OnClickListener {
     private RelativeLayout main_body;
@@ -31,6 +32,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
     private ImageView bottom_bar_image_myinfo;
     private RelativeLayout bottom_bar_myinfo_btn;
     private LinearLayout main_bottom_bar;
+    private ExercisesView mExercisesView;
 
 
 /*  private FrameLayout mBodyLayout;
