@@ -6,8 +6,8 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     tools:context="cn.edu.gdmec.android.boxuegu.activity.MainActivity">
-
- <!--<LinearLayout
+<!--//变回原来的样子
+<LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:background="@android:color/white"
@@ -108,8 +108,8 @@
                 android:src="@drawable/main_my_icon"/>
         </RelativeLayout>
     </LinearLayout>-->
-
-        <LinearLayout
+//重新注释
+      <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:orientation="vertical"

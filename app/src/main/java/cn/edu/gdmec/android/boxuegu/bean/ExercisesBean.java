@@ -10,7 +10,7 @@ public class ExercisesBean {
     public String content;
     public int background;
     public int subjectId;
-    public int subject;
+    public String subject;
     public String a;
     public String b;
     public String c;

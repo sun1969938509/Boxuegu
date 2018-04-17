@@ -18,9 +18,9 @@ import cn.edu.gdmec.android.boxuegu.ExercisesFragment;
 import cn.edu.gdmec.android.boxuegu.FragmentMyinfoFragment;
 import cn.edu.gdmec.android.boxuegu.R;
 import cn.edu.gdmec.android.boxuegu.utils.AnalysisUtils;
-import cn.edu.gdmec.android.boxuegu.view.ExercisesView;
 
 public class MainActivity extends FragmentActivity implements View.OnClickListener {
+
     private RelativeLayout main_body;
     private TextView bottom_bar_text_course;
     private ImageView bottom_bar_image_course;
@@ -32,10 +32,10 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
     private ImageView bottom_bar_image_myinfo;
     private RelativeLayout bottom_bar_myinfo_btn;
     private LinearLayout main_bottom_bar;
-    private ExercisesView mExercisesView;
 
 
-/*  private FrameLayout mBodyLayout;
+//变回原来的样子
+ /*private FrameLayout mBodyLayout;
   private LinearLayout mBottomLayout;
   private View mCourseBtn;
   private View mExercisesBtn;
@@ -57,15 +57,16 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         setContentView(R.layout.activity_main);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         initView();
-        setMain();
+       setMain();
        /* init();
         initBottomBar();
         setListener();
         setInitStatus();*/
 
     }
+    //重新注释
 
-    private void initView() {
+ private void initView() {
 
         main_body = (RelativeLayout) findViewById(R.id.main_body);
         bottom_bar_text_course = (TextView) findViewById(R.id.bottom_bar_text_course);
@@ -173,7 +174,8 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         }
         return super.onKeyDown(keyCode, event);
     }
-    /* @Override
+
+   /* @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
     if (data!=null){
@@ -189,8 +191,10 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
           }
         }
 
-    }
-    private void  init(){
+    }*/
+
+    //变回原来的样子
+    /*private void  init(){
         tv_back=(TextView)findViewById(R.id.tv_back);
         tv_main_title=(TextView)findViewById(R.id.tv_main_title);
         tv_main_title.setText("博学谷课程");
@@ -219,10 +223,12 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
     @Override
     public void onClick(View v) {
            switch (v.getId()){
+               //课程点击事件
                case R.id.bottom_bar_course_btn:
                    clearBottomImageState();
                    selectDisplayView(0);
                    break;
+                   //习题点击事件
                case  R.id.bottom_bar_exercise_btn:
                    clearBottomImageState();
                    selectDisplayView(1);
@@ -347,3 +353,4 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
        editor.commit();
    }*/
 }
+

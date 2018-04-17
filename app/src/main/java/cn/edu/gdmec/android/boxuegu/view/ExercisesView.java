@@ -3,6 +3,7 @@ package cn.edu.gdmec.android.boxuegu.view;
 import android.app.Activity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -23,10 +24,14 @@ public class ExercisesView {
     private Activity mContext;
     private LayoutInflater mInflater;
     private View mCurrentView;
+
     public ExercisesView(Activity content){
         mContext=content;
         mInflater=LayoutInflater.from(mContext);
     }
+
+
+
     private void createView(){
         initView();
     }

@@ -117,7 +117,7 @@ public class ActivityFindPswActivity extends Activity implements View.OnClickLis
         }else{
             tv_reset_psw.setVisibility(View.VISIBLE);
            et_reset_psw.setVisibility(View.VISIBLE);
-           btn_validate.setText("设置");
+          // btn_validate.setText("设置");
            String newPsw=et_reset_psw.getText().toString().trim();
             if(TextUtils.isEmpty(newPsw)){
                 Toast.makeText(this, "请输入要设置的新密码", Toast.LENGTH_SHORT).show();

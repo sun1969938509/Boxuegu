@@ -76,7 +76,7 @@
      android:layout_marginLeft="35dp"
      android:layout_marginRight="35dp"
      android:background="@drawable/find_psw_icon"
-     android:hint="请输入要验证的姓名"
+     android:hint="请输入要设置的新密码"
      android:paddingLeft="8dp"
      android:singleLine="true"
      android:textColor="#000000"
