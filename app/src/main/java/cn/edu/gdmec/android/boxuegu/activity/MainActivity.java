@@ -5,6 +5,9 @@ import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.LinearSmoothScroller;
+import android.support.v7.widget.RecyclerView;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
@@ -13,7 +16,11 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import cn.edu.gdmec.android.boxuegu.CourseFragment;
+import cn.edu.gdmec.android.boxuegu.ExercisesDatailListItemAdapter;
 import cn.edu.gdmec.android.boxuegu.ExercisesFragment;
 import cn.edu.gdmec.android.boxuegu.FragmentMyinfoFragment;
 import cn.edu.gdmec.android.boxuegu.R;
@@ -32,6 +39,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
     private ImageView bottom_bar_image_myinfo;
     private RelativeLayout bottom_bar_myinfo_btn;
     private LinearLayout main_bottom_bar;
+
 
 
 //变回原来的样子
@@ -149,10 +157,13 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         if(data!=null){
             boolean isLogin=data.getBooleanExtra("isLogin",false);
             if(isLogin){
-                setSelectStatus(0);
+                setSelectStatus(2);
             }else{
                 setSelectStatus(2);
             }
+        }
+        if(requestCode==000){
+            setSelectStatus(1);
         }
     }
     protected long exitTime;

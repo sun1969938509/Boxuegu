@@ -3,13 +3,14 @@ package cn.edu.gdmec.android.boxuegu;
 import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -19,8 +20,11 @@ import java.util.List;
 import cn.edu.gdmec.android.boxuegu.bean.ExercisesBean;
 import cn.edu.gdmec.android.boxuegu.utils.AnalysisUtils;
 
-public class ActivityExercisesDatailActivity extends Activity {
+/**
+ * Created by Administrator on 2018/4/17.
+ */
 
+public class ActivityExercisesDetailActivity extends Activity{
     private TextView tv_back;
     private TextView tv_main_title;
     private RelativeLayout title_bar;
@@ -31,16 +35,16 @@ public class ActivityExercisesDatailActivity extends Activity {
     private RecyclerView rv_list;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate( Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_exercises_datail);
+        setContentView(R.layout.activity_exercises_detail);
         id=getIntent().getIntExtra("id",0);
         title=getIntent().getStringExtra("title");
         ebl=new ArrayList<ExercisesBean>();
         initData();
         initView();
-
     }
+
 
     private void initData() {
         try{
@@ -52,20 +56,23 @@ public class ActivityExercisesDatailActivity extends Activity {
             e.printStackTrace();
         }
     }
-
     private void initView() {
-        tv_back = (TextView) findViewById(R.id.tv_back);
-        tv_main_title = (TextView) findViewById(R.id.tv_main_title);
-        title_bar = (RelativeLayout) findViewById(R.id.title_bar);
+        tv_back=(TextView)findViewById(R.id.tv_back);
+        tv_main_title=(TextView)findViewById(R.id.tv_main_title);
+        title_bar=(RelativeLayout)findViewById(R.id.title_bar);
         title_bar.setBackgroundColor(Color.parseColor("#30B4FF"));
         tv_main_title.setText(title);
+
         tv_back.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                ActivityExercisesDatailActivity.this.finish();
+            public void onClick(View v) {
+
+                ActivityExercisesDetailActivity.this.finish();
             }
         });
-        adapter=new ExercisesDatailListItemAdapter(ActivityExercisesDatailActivity.this, new ExercisesDatailListItemAdapter.OnSelectListener() {
+
+      adapter=new ExercisesDatailListItemAdapter(ActivityExercisesDetailActivity.this,
+              new ExercisesDatailListItemAdapter.OnSelectListener() {
             @Override
             public void onSelectA(int position, ImageView iv_a, ImageView iv_b, ImageView iv_c, ImageView iv_d) {
                 if(ebl.get(position).answer!=1){
@@ -89,10 +96,11 @@ public class ActivityExercisesDatailActivity extends Activity {
                         iv_a.setImageResource(R.drawable.exercises_error_icon);
                         iv_d.setImageResource(R.drawable.exercises_right_icon);
                         break;
-                        //dee
+
                 }
                 AnalysisUtils.setABCDEnable(false,iv_a,iv_b,iv_c,iv_d);
             }
+
             @Override
             public void onSelectB(int position, ImageView iv_a, ImageView iv_b, ImageView iv_c, ImageView iv_d) {
                 if(ebl.get(position).answer!=2){
@@ -107,7 +115,6 @@ public class ActivityExercisesDatailActivity extends Activity {
                         break;
                     case 2:
                         iv_b.setImageResource(R.drawable.exercises_right_icon);
-
                         break;
                     case 3:
                         iv_c.setImageResource(R.drawable.exercises_right_icon);
@@ -117,6 +124,7 @@ public class ActivityExercisesDatailActivity extends Activity {
                         iv_b.setImageResource(R.drawable.exercises_error_icon);
                         iv_d.setImageResource(R.drawable.exercises_right_icon);
                         break;
+
                 }
                 AnalysisUtils.setABCDEnable(false,iv_a,iv_b,iv_c,iv_d);
             }
@@ -145,6 +153,7 @@ public class ActivityExercisesDatailActivity extends Activity {
                         iv_c.setImageResource(R.drawable.exercises_error_icon);
                         iv_d.setImageResource(R.drawable.exercises_right_icon);
                         break;
+
                 }
                 AnalysisUtils.setABCDEnable(false,iv_a,iv_b,iv_c,iv_d);
             }
@@ -172,13 +181,15 @@ public class ActivityExercisesDatailActivity extends Activity {
                     case 4:
                         iv_d.setImageResource(R.drawable.exercises_right_icon);
                         break;
+
                 }
                 AnalysisUtils.setABCDEnable(false,iv_a,iv_b,iv_c,iv_d);
             }
         });
         adapter.setData(ebl);
-        rv_list=(RecyclerView)findViewById(R.id.rv_list);
+        rv_list=(RecyclerView) findViewById(R.id.rv_list);
         rv_list.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
         rv_list.setAdapter(adapter);
     }
+
 }
