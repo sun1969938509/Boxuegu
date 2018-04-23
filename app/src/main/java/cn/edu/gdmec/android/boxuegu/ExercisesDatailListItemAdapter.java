@@ -8,12 +8,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.TextView;
 import android.widget.ImageView;
 
-import cn.edu.gdmec.android.boxuegu.activity.MainActivity;
-import cn.edu.gdmec.android.boxuegu.adapter.ExercisesDetailAdapter;
 import cn.edu.gdmec.android.boxuegu.bean.ExercisesBean;
 import cn.edu.gdmec.android.boxuegu.utils.AnalysisUtils;
 
@@ -26,20 +23,24 @@ public class ExercisesDatailListItemAdapter extends RecyclerView.Adapter<Exercis
     private OnSelectListener onSelectListener;
 
 
- public ExercisesDatailListItemAdapter(Context context,OnSelectListener onSelectListener) {
+
+public ExercisesDatailListItemAdapter(Context context,OnSelectListener onSelectListener) {
         this.context = context;
         this.layoutInflater = LayoutInflater.from(context);
         this.onSelectListener=onSelectListener;
     }
 
 
-  @Override
+
+ @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater=LayoutInflater.from(parent.getContext());
       View view=inflater.inflate(R.layout.exercises_datail_list_item,parent,false);
        return new ViewHolder(view);
 
     }
+
+
 
 
     @Override
@@ -222,7 +223,7 @@ public class ExercisesDatailListItemAdapter extends RecyclerView.Adapter<Exercis
 
     protected class ViewHolder extends RecyclerView.ViewHolder{
         private TextView tvSubject;
-    private ImageView ivA;
+        private ImageView ivA;
     private TextView tvA;
     private ImageView ivB;
     private TextView tvB;
@@ -244,10 +245,7 @@ public class ExercisesDatailListItemAdapter extends RecyclerView.Adapter<Exercis
             tvC = (TextView) view.findViewById(R.id.tv_c);
             ivD = (ImageView) view.findViewById(R.id.iv_d);
             tvD = (TextView) view.findViewById(R.id.tv_d);
-
         }
-
-
 
     }
    public interface OnSelectListener{

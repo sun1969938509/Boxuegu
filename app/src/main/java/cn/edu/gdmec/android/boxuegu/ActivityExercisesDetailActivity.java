@@ -71,12 +71,12 @@ public class ActivityExercisesDetailActivity extends Activity{
             }
         });
 
-      adapter=new ExercisesDatailListItemAdapter(ActivityExercisesDetailActivity.this,
+    adapter=new ExercisesDatailListItemAdapter(ActivityExercisesDetailActivity.this,
               new ExercisesDatailListItemAdapter.OnSelectListener() {
             @Override
             public void onSelectA(int position, ImageView iv_a, ImageView iv_b, ImageView iv_c, ImageView iv_d) {
-                if(ebl.get(position).answer!=1){
-                    ebl.get(position).select=1;
+             if(ebl.get(position).answer!=1){
+                        ebl.get(position).select=1;
                 }else{
                     ebl.get(position).select=0;
                 }
@@ -187,9 +187,9 @@ public class ActivityExercisesDetailActivity extends Activity{
             }
         });
         adapter.setData(ebl);
-        rv_list=(RecyclerView) findViewById(R.id.rv_list);
-        rv_list.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
-        rv_list.setAdapter(adapter);
+       rv_list=(RecyclerView) findViewById(R.id.rv_list);
+       rv_list.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
+       rv_list.setAdapter(adapter);
     }
 
 }
