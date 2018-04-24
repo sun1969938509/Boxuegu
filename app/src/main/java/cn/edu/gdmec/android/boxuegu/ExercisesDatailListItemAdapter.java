@@ -21,10 +21,10 @@ public class ExercisesDatailListItemAdapter extends RecyclerView.Adapter<Exercis
     private Context context;
     private LayoutInflater layoutInflater;
     private OnSelectListener onSelectListener;
+    private MyItemClickListener  mItemClickListener;
 
 
-
-public ExercisesDatailListItemAdapter(Context context,OnSelectListener onSelectListener) {
+    public ExercisesDatailListItemAdapter(Context context,OnSelectListener onSelectListener) {
         this.context = context;
         this.layoutInflater = LayoutInflater.from(context);
         this.onSelectListener=onSelectListener;
@@ -174,6 +174,10 @@ public ExercisesDatailListItemAdapter(Context context,OnSelectListener onSelectL
            holder.ivA.setOnClickListener(new View.OnClickListener() {
                @Override
                public void onClick(View v) {
+                   if (mItemClickListener != null) {
+                       mItemClickListener.onItemClick(v,position+1);
+                   }
+
                    if(selectedPosition.contains(""+position)){
                        selectedPosition.remove(""+position);
                    }else{
@@ -184,8 +188,12 @@ public ExercisesDatailListItemAdapter(Context context,OnSelectListener onSelectL
                }
            });
         holder.ivB.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
+                if (mItemClickListener != null) {
+                    mItemClickListener.onItemClick(v,position+1);
+                }
                 if(selectedPosition.contains(""+position)){
                     selectedPosition.remove(""+position);
                 }else{
@@ -196,8 +204,12 @@ public ExercisesDatailListItemAdapter(Context context,OnSelectListener onSelectL
             }
         });
         holder.ivC.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
+                if (mItemClickListener != null) {
+                    mItemClickListener.onItemClick(v,position+1);
+                }
                 if(selectedPosition.contains(""+position)){
                     selectedPosition.remove(""+position);
                 }else{
@@ -210,6 +222,9 @@ public ExercisesDatailListItemAdapter(Context context,OnSelectListener onSelectL
         holder.ivD.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (mItemClickListener != null) {
+                    mItemClickListener.onItemClick(v,position+1);
+                }
                 if(selectedPosition.contains(""+position)){
                     selectedPosition.remove(""+position);
                 }else{
@@ -245,6 +260,8 @@ public ExercisesDatailListItemAdapter(Context context,OnSelectListener onSelectL
             tvC = (TextView) view.findViewById(R.id.tv_c);
             ivD = (ImageView) view.findViewById(R.id.iv_d);
             tvD = (TextView) view.findViewById(R.id.tv_d);
+
+
         }
 
     }
@@ -255,5 +272,11 @@ public ExercisesDatailListItemAdapter(Context context,OnSelectListener onSelectL
        void onSelectD(int position,ImageView iv_a,ImageView iv_b,ImageView iv_c,ImageView iv_d);
 
    }
+    public interface MyItemClickListener {
+        void onItemClick(View view, int position);
+    }
 
+    public void setItemClickListener(MyItemClickListener myItemClickListener) {
+        this.mItemClickListener = myItemClickListener;
+    }
 }

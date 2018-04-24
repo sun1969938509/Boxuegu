@@ -38,6 +38,19 @@ public class AnalysisUtils {
         editor.putString("loginUserName","");
         editor.commit();
     }
+    //读取习题状态
+    public static void saveExercises(Context context,int i){
+        SharedPreferences sp=context.getSharedPreferences("Exer",Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor=sp.edit();
+        editor.putBoolean("isexer"+i,true);
+        editor.commit();
+    }
+   //读习题
+    public static boolean readExercises(Context context,int i){
+        SharedPreferences sp=context.getSharedPreferences("Exer",Context.MODE_PRIVATE);
+        boolean isexer=sp.getBoolean("isexer"+i,false);
+        return isexer;
+    }
     public static List<ExercisesBean> getExercisesInfos(InputStream is)throws Exception{
         XmlPullParser parser= Xml.newPullParser();
         parser.setInput(is,"utf-8");
