@@ -134,6 +134,7 @@ private Handler handler=new Handler(){
 
             }
 
+
             @Override
             public void onPageScrollStateChanged(int state) {
 
