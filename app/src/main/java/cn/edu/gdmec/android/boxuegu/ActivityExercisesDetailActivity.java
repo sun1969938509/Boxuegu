@@ -1,6 +1,7 @@
 package cn.edu.gdmec.android.boxuegu;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -33,6 +34,7 @@ public class ActivityExercisesDetailActivity extends Activity{
     private List<ExercisesBean> ebl;
     private ExercisesDatailListItemAdapter adapter;
     private RecyclerView rv_list;
+    private TextView tv_biao;
 
     @Override
     protected void onCreate( Bundle savedInstanceState) {
@@ -56,18 +58,20 @@ public class ActivityExercisesDetailActivity extends Activity{
             e.printStackTrace();
         }
     }
+    private int count=0;
     private void initView() {
         tv_back=(TextView)findViewById(R.id.tv_back);
         tv_main_title=(TextView)findViewById(R.id.tv_main_title);
         title_bar=(RelativeLayout)findViewById(R.id.title_bar);
         title_bar.setBackgroundColor(Color.parseColor("#30B4FF"));
         tv_main_title.setText(title);
-
+        tv_biao=(TextView)findViewById(R.id.tv_dibu);
         tv_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 ActivityExercisesDetailActivity.this.finish();
+
             }
         });
 
@@ -184,6 +188,17 @@ public class ActivityExercisesDetailActivity extends Activity{
 
                 }
                 AnalysisUtils.setABCDEnable(false,iv_a,iv_b,iv_c,iv_d);
+            }
+        });
+        adapter.setItemClickListener(new ExercisesDatailListItemAdapter.MyItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                count++;
+              tv_biao.setText("第"+position+"题完成，共"+adapter.getItemCount()+"题");
+              if(count==5){
+                  AnalysisUtils.saveExercises(ActivityExercisesDetailActivity.this,id);
+              }
+
             }
         });
         adapter.setData(ebl);
