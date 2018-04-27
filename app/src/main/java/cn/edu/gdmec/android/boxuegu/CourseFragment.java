@@ -16,10 +16,13 @@ import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
 import cn.edu.gdmec.android.boxuegu.adapter.ADViewPagerAdapter;
+import cn.edu.gdmec.android.boxuegu.bean.CourseBean;
 
 
 public class CourseFragment extends Fragment  {
@@ -32,6 +35,8 @@ private RecyclerView rv_list;
 
 public static final int MSG_AD_SLID=002;
 private List<ImageView> viewList;
+private List<CourseBean> rList;
+private CourseListItemAdapter adapter;
 private ADViewPagerAdapter viewPagerAdapter;
 private List<View> dots;
 private int oldPoints=0;
@@ -64,9 +69,20 @@ private Handler handler=new Handler(){
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        getCourseData();
         initView(view);
         setViewPager();
 
+    }
+
+    private void getCourseData() {
+        try {
+            InputStream is=getActivity().getResources().getAssets().open("chaptertitle.xml");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     private void setViewPager() {
@@ -88,10 +104,15 @@ private Handler handler=new Handler(){
     }
 
     private void initView(View view) {
+
+        rv_list=view.findViewById(R.id.rv_list);
+        adapter=new CourseListItemAdapter(getActivity());
+        adapter.setData(rList);
+        rv_list.setLayoutManager(new GridLayoutManager(getActivity(),3));
+        rv_list.setAdapter(adapter);
+
         vp_advertBanner=view.findViewById(R.id.vp_adverBanner);
         rl_adBanner=view.findViewById(R.id.rl_adBanner);
-        rv_list=view.findViewById(R.id.rv_list);
-        rv_list.setLayoutManager(new GridLayoutManager(getActivity(),3));
 
         viewList=new ArrayList<>();
         ImageView imageView1=new ImageView(getActivity());
