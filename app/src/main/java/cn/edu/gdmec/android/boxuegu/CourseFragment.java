@@ -23,6 +23,7 @@ import java.util.List;
 
 import cn.edu.gdmec.android.boxuegu.adapter.ADViewPagerAdapter;
 import cn.edu.gdmec.android.boxuegu.bean.CourseBean;
+import cn.edu.gdmec.android.boxuegu.utils.AnalysisUtils;
 
 
 public class CourseFragment extends Fragment  {
@@ -78,6 +79,7 @@ private Handler handler=new Handler(){
     private void getCourseData() {
         try {
             InputStream is=getActivity().getResources().getAssets().open("chaptertitle.xml");
+            rList= AnalysisUtils.getCourseInfo(is);
         } catch (IOException e) {
             e.printStackTrace();
         }catch (Exception e){
@@ -102,6 +104,7 @@ private Handler handler=new Handler(){
         };
         thread.start();
     }
+
 
     private void initView(View view) {
 
@@ -128,7 +131,6 @@ private Handler handler=new Handler(){
         viewList.add(imageView3);
 
         viewPagerAdapter=new ADViewPagerAdapter(getActivity(),viewList);
-
         vp_advertBanner.setAdapter(viewPagerAdapter);
 
         dots=new ArrayList<>();
