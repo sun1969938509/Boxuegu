@@ -107,6 +107,7 @@ public class VideoListItemAdapter extends BaseAdapter {
              }
          });
     }
+
     private boolean readLoginStatus(){
         SharedPreferences sp=context.getSharedPreferences("loginInfo",Context.MODE_PRIVATE);
         boolean isLogin=sp.getBoolean("isLogin",false);
