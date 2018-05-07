@@ -8,27 +8,41 @@ import android.database.sqlite.SQLiteOpenHelper;
  * Created by Administrator on 2018/4/1.
  */
 
-public class SQLiteHelper extends SQLiteOpenHelper{
-    private static final  int DB_VERSION=2;
-    public static String DB_NAME="bxg.db";
-    public static final String U_USERINFO="userinfo";//个人资料
-    public SQLiteHelper(Context context){
-        super(context,DB_NAME,null,DB_VERSION);
+public class SQLiteHelper extends SQLiteOpenHelper {
+    private static final int DB_VERSION = 2;
+    public static String DB_NAME = "bxg.db";
+    public static final String U_USERINFO = "userinfo";//个人资料
+    public static final String U_VIDEO_PLAY_LIST = "videoplaylist";
+
+    public SQLiteHelper(Context context) {
+        super(context, DB_NAME, null, DB_VERSION);
     }
+
     @Override
-    public void onCreate(SQLiteDatabase db){
-        db.execSQL("CREATE TABLE IF NOT EXISTS "+U_USERINFO+"("
-                +"_id INTEGER PRIMARY KEY AUTOINCREMENT,"
-                +"userName VARCHAR,"
-                +"nickName VARCHAR,"
-                +"sex VARCHAR,"
-                +"signature VARCHAR,"
-                +"QQ VARCHAR"
-                +")");
+    public void onCreate(SQLiteDatabase db) {
+        db.execSQL("CREATE TABLE IF NOT EXISTS " + U_USERINFO + "("
+                + "_id INTEGER PRIMARY KEY AUTOINCREMENT,"
+                + "userName VARCHAR,"
+                + "nickName VARCHAR,"
+                + "sex VARCHAR,"
+                + "signature VARCHAR,"
+                + "QQ VARCHAR"
+                + ")");
+        db.execSQL("CREATE TABLE IF NOT EXISTS " + U_VIDEO_PLAY_LIST + "("
+                + "_id INTECER PRIMARY KEY AUTOINCREMENT,"
+                + "userName VARCHAR,"
+                + "chapterId INT,"
+                + "videoId INT,"
+                + "videoPath VARCHAR,"
+                + "title VARCHAR,"
+                + "secondTitle VARCHAR"
+                + ")");
     }
+
     @Override
-    public void onUpgrade(SQLiteDatabase db,int oldVersion,int newVersion){
-        db.execSQL("DROP TABLE IF EXISTS "+U_USERINFO);
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        db.execSQL("DROP TABLE IF EXISTS " + U_USERINFO);
+        db.execSQL("DROP TABLE IF EXISTS "+U_VIDEO_PLAY_LIST);
         onCreate(db);
     }
 }

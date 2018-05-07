@@ -29,6 +29,9 @@
         <activity android:name=".ActivityModifyPswActivity"/>
         <activity android:name=".ActivityFindPswActivity"/>
         <activity android:name=".ActivityExercisesDetailActivity"/>
+        <activity android:name=".ActivityVideoListActivity"/>
+        <activity android:name=".ActivityVideoPlayActivity"/>
+        <activity android:name=".ActivityPlayHistoryActivity"/>
     </application>
 
 </manifest>

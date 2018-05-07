@@ -1,6 +1,7 @@
 package cn.edu.gdmec.android.boxuegu;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -53,7 +54,7 @@ public void setData(List<CourseBean> objects){
     }
 
 
-    private void initializeViews(CourseBean object, ViewHolder holder) {
+    private void initializeViews(final CourseBean object, ViewHolder holder) {
         //TODO implement
         if (object !=null){
             holder.tvCourseImgTitle.setText(object.imgTitle);
@@ -91,6 +92,15 @@ public void setData(List<CourseBean> objects){
                     break;
 
             }
+            holder.ivCourseImg.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent=new Intent(context,ActivityVideoListActivity.class);
+                    intent.putExtra("id",object.id);
+                    intent.putExtra("intro",object.intro);
+                    context.startActivity(intent);
+                }
+            });
         }
     }
 
