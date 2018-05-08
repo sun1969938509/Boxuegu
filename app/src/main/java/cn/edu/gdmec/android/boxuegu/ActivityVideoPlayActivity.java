@@ -36,8 +36,8 @@ public class ActivityVideoPlayActivity extends Activity  {
             Toast.makeText(this,"本地没有此视频，暂无法播放",Toast.LENGTH_SHORT).show();
             return;
         }
-        String url="android:resource://"+getPackageName()+"/"+R.raw.video11;
-        videoView.setVideoPath(url);
+        String uri="android.resource://"+getPackageName()+"/"+R.raw.video11;
+        videoView.setVideoPath(uri);
         videoView.start();
     }
 

@@ -29,7 +29,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
                 + "QQ VARCHAR"
                 + ")");
         db.execSQL("CREATE TABLE IF NOT EXISTS " + U_VIDEO_PLAY_LIST + "("
-                + "_id INTECER PRIMARY KEY AUTOINCREMENT,"
+                + "_id INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + "userName VARCHAR,"
                 + "chapterId INT,"
                 + "videoId INT,"

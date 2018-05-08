@@ -37,7 +37,7 @@ public class ActivityPlayHistoryActivity extends Activity{
         setContentView(R.layout.activity_play_history);
         db=DBUtils.getInstance(this);
         vbl=new ArrayList<VideoBean>();
-        vbl=db.getVideHistory(AnalysisUtils.readLoginUserName(this));
+        vbl=db.getVideoHistory(AnalysisUtils.readLoginUserName(this));
         initView();
     }
 
