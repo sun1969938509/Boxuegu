@@ -97,7 +97,7 @@ public class DBUtils {
         return hasVideo;
     }
     public List<VideoBean> getVideoHistory(String s){
-        String sql="SELECT * FROM"+SQLiteHelper.U_VIDEO_PLAY_LIST+" WHERE userName=?";
+        String sql="SELECT * FROM "+SQLiteHelper.U_VIDEO_PLAY_LIST+" WHERE userName=?";
         Cursor cursor=db.rawQuery(sql,new String[]{s});
         List<VideoBean> vbl=new ArrayList<>();
         VideoBean bean=null;

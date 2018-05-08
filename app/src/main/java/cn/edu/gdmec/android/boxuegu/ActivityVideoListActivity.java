@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.ScrollView;
@@ -87,17 +88,26 @@ public class ActivityVideoListActivity extends Activity {
             jsonArray=new JSONArray(read(is));
             videoList=new ArrayList<VideoBean>();
             for(int i=0;i<jsonArray.length();i++){
-                VideoBean bean=new VideoBean();
+
                 JSONObject jsonObject=jsonArray.getJSONObject(i);
-                if(jsonObject.getInt("chapterId")==chapterId){
-                    bean.chapterId=jsonObject.getInt("chapterId");
-                    bean.videoId=Integer.parseInt(jsonObject.getString("videoId"));
-                    bean.title=jsonObject.getString("title");
-                    bean.secondTitle=jsonObject.getString("secondTitle");
-                    bean.videoPath=jsonObject.getString("videoPath");
-                    videoList.add(bean);
+                Log.i("jsonObject",jsonObject.toString());
+                if(jsonObject.getInt("chapterId")==chapterId) {
+                        JSONArray jsonArray1=jsonObject.getJSONArray("data");
+                    for (int j = 0; j < jsonArray1.length(); j++) {
+                        VideoBean bean=new VideoBean();
+                        JSONObject jsonObject1= jsonArray1.getJSONObject(j);
+                        bean.chapterId = jsonObject.getInt("chapterId");
+                        Log.i("chapterId", bean.chapterId + "");
+                        bean.videoId = jsonObject1.getInt("videoId");
+                        bean.title = jsonObject1.getString("title");
+                        bean.secondTitle = jsonObject1.getString("secondTitle");
+                        bean.videoPath = jsonObject1.getString("videoPath");
+                        videoList.add(bean);
+                        bean=null;
+                    }
+
                 }
-                bean=null;
+
             }
         }catch (IOException e){
             e.printStackTrace();

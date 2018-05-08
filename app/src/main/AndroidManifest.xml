@@ -33,5 +33,5 @@
         <activity android:name=".ActivityVideoPlayActivity"/>
         <activity android:name=".ActivityPlayHistoryActivity"/>
     </application>
-
+<uses-permission android:name="android.permission.INTERNET"/>
 </manifest>
